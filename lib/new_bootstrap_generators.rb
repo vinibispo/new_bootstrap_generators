@@ -1,10 +1,16 @@
-require "new_bootstrap_generators/version"
-require "new_bootstrap_generators/engine"
+# frozen_string_literal: true
+
+require 'new_bootstrap_generators/version'
+require 'new_bootstrap_generators/engine'
 
 module NewBootstrapGenerators
+  ROOT_PATH = Pathname.new(File.join(__dir__, '..'))
   class << self
-    def Webpacker
-      @Webpacker ||= ::Webpacker::Instance.new(root_path: NewBootstrapGenerators::Engine.root, config_path: NewBootstrapGenerators::Engine.root.join('config', 'webpacker.yml'))
+    def webpacker
+      @webpacker ||= ::Webpacker::Instance.new(root_path: ROOT_PATH,
+                                               config_path: ROOT_PATH.join(
+                                                 'config', 'webpacker.yml'
+                                               ))
     end
   end
   # Your code goes here...
