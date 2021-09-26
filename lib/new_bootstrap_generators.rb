@@ -2,6 +2,7 @@
 
 require 'new_bootstrap_generators/version'
 require 'new_bootstrap_generators/engine'
+require 'generators/new_bootstrap_generators/install/install_generator'
 
 module NewBootstrapGenerators
   ROOT_PATH = Pathname.new(File.join(__dir__, '..'))
