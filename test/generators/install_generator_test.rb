@@ -12,7 +12,10 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     prepare_dummy_app
   end
 
+  teardown :teardown_app
+
   test 'should copy scaffold erb templates' do
+    remove_file 'app/views/layouts/application.html.erb'
     run_generator
     %w[index edit new show _form].each do |view|
       assert_file "lib/templates/erb/scaffold/#{view}.html.erb"
@@ -20,6 +23,8 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   end
 
   test 'should copy application file' do
+    remove_file 'app/views/layouts/application.html.erb'
+    assert_no_file 'app/views/layouts/application.html.erb'
     run_generator
     assert_file 'app/views/layouts/application.html.erb'
   end
@@ -28,5 +33,17 @@ class InstallGeneratorTest < Rails::Generators::TestCase
 
   def prepare_dummy_app
     FileUtils.cp_r('test/dummy/.', destination_root)
+  end
+
+  def remove_file(file)
+    FileUtils.rm(File.join(destination_root, file)) if exist?(file)
+  end
+
+  def exist?(file)
+    ::File.exist?(File.join(destination_root, file))
+  end
+
+  def teardown_app
+    FileUtils.rm_rf(destination_root)
   end
 end

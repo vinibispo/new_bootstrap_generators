@@ -9,9 +9,9 @@ module NewBootstrapGenerators
 
       desc 'Full Installation of new_bootstrap_generators'
 
-      # def create_layout
-      #   template 'layouts/starter.html.erb', 'app/views/layouts/application.html.erb'
-      # end
+      def create_layout_file
+        template 'layouts/starter.html.erb', File.join('app/views/layouts/application.html.erb')
+      end
 
       def copy_scaffold_files
         empty_directory File.join('lib', 'templates')
