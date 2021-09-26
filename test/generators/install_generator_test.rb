@@ -15,8 +15,7 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   teardown :teardown_app
 
   test 'should copy scaffold erb templates' do
-    remove_file 'app/views/layouts/application.html.erb'
-    run_generator
+    run_generator [destination_root, '--force']
     %w[index edit new show _form].each do |view|
       assert_file "lib/templates/erb/scaffold/#{view}.html.erb"
     end
