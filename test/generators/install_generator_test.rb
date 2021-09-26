@@ -19,6 +19,11 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     end
   end
 
+  test 'should copy application file' do
+    run_generator
+    assert_file 'app/views/layouts/application.html.erb'
+  end
+
   private
 
   def prepare_dummy_app
