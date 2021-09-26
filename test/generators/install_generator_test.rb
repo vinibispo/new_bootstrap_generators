@@ -28,6 +28,11 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     assert_file 'app/views/layouts/application.html.erb'
   end
 
+  test 'should have package.json file' do
+    run_generator [destination_root, '--force']
+    assert_file 'package.json'
+  end
+
   private
 
   def prepare_dummy_app
